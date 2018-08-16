@@ -1,7 +1,7 @@
 package com.mxh.Algorithm.Leetcode.easy;
 
 /**
- * 给定一个 32 位有符号整数，将整数中的数字进行反转。
+ * 给定一个 32 位有符号整数，将整数中的数字进行反转。 需要判断溢出
  * 
  * @author mxh
  * @version 创建时间：2018年8月16日上午1:22:51 类说明
