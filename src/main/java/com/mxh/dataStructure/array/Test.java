@@ -7,7 +7,7 @@ package com.mxh.dataStructure.array;
 */
 public class Test {
 	public static void main(String[] args) {
-		Array<Integer> arr=new Array<>(20);
+		/*Array<Integer> arr=new Array<>(20);
 		arr.addFirst(10);
 		System.out.println(arr);
 		arr.addFirst(12);
@@ -24,6 +24,7 @@ public class Test {
 		System.out.println(arr);
 		arr.remove(1);
 		System.out.println(arr);
-		System.out.println(arr.get(2));
+		System.out.println(arr.get(2));*/
+		System.out.println(1>>>1);
 	}
 }

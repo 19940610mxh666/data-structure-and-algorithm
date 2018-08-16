@@ -148,6 +148,14 @@ public class Array<E> {
 		return data[index];
 	}
 
+	public E getFirst() {
+		return get(0);
+	}
+
+	public E getLast() {
+		return get(size - 1);
+	}
+
 	public void set(int index, E e) {
 		if (index < 0 || index > size) {
 			throw new IllegalArgumentException("index is illegal");
@@ -165,7 +173,8 @@ public class Array<E> {
 	}
 
 	/**
-	 * 移除指定位置的元素并返回
+	 * 移除指定位置的元素并返回 复杂度震荡 当元素个数少于数组容量的1/4时，才缩容。lazy模式 考虑算法的性能
+	 * 如果在1/2时就缩容，那么考虑到add()操作时，就因为重复的resize()导致性能受到影响
 	 * 
 	 * @Last_update 2018年8月15日下午10:25:56
 	 * @param index
@@ -180,8 +189,8 @@ public class Array<E> {
 			data[i] = data[i + 1];
 		}
 		size--;
-		if (size == data.length >>> 2) {
-			resize(data.length >>> 2);
+		if (size == data.length >>> 2 && data.length >>> 1 != 0) {
+			resize(data.length >>> 1);
 		}
 		return ret;
 	}
