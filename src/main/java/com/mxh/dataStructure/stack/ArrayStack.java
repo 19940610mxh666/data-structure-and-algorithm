@@ -3,6 +3,8 @@ package com.mxh.dataStructure.stack;
 import com.mxh.dataStructure.array.Array;
 
 /**
+ * 栈
+ * 
  * @author mxh
  * @version 创建时间：2018年8月17日上午12:16:40 类说明
  */

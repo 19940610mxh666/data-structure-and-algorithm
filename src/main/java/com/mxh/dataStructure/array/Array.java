@@ -14,6 +14,7 @@ public class Array<E> {
 	@SuppressWarnings("unchecked")
 	public Array(int capacity) {
 		data = (E[]) new Object[capacity];
+		this.capacity = capacity;
 		size = 0;
 	}
 
@@ -61,8 +62,9 @@ public class Array<E> {
 	public void add(int index, E e) {
 		if (index < 0 || index > size)
 			throw new IllegalArgumentException("Add failed.Require index must >=0 and index <=size");
-		if (size == data.length)
-			resize(data.length << 2);
+		if (size == data.length) {
+			resize(data.length << 1);
+		}
 		for (int i = size - 1; i >= index; i--) {
 			data[i + 1] = data[i];
 		}
@@ -81,6 +83,7 @@ public class Array<E> {
 		for (int i = 0; i < size; i++) {
 			newData[i] = data[i];
 		}
+		capacity = newCapacity;
 		data = newData;
 	}
 
@@ -91,8 +94,6 @@ public class Array<E> {
 	 * @param e
 	 */
 	public void addLast(E e) {
-		if (size == data.length)
-			throw new IllegalArgumentException("Add failed.Array is full");
 		add(size, e);
 	}
 
@@ -103,8 +104,6 @@ public class Array<E> {
 	 * @param e
 	 */
 	public void addFirst(E e) {
-		if (size == data.length)
-			throw new IllegalArgumentException("Add failed.Array is full");
 		add(0, e);
 	}
 
