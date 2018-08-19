@@ -48,5 +48,8 @@ public class Main {
 		double time1 = testQueue(loopQueue, opCount);
 		System.out.println("ArrayQueuetime:" + time);
 		System.out.println("LoopQueuetime1:" + time1);
+		LinkedListQueue<Integer> list=new LinkedListQueue<>();
+		double time2=testQueue(list, opCount);
+		System.out.println(time2);
 	}
 }
