@@ -1,5 +1,9 @@
 package com.mxh.dataStructure.bst;
 
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
 /**
  * 二分搜索树
  * 
@@ -155,5 +159,139 @@ public class BST<E extends Comparable<E>> {
 		postOrder(node.left);
 		postOrder(node.right);
 		System.out.println(node.e);
+	}
+
+	// 非递归前序遍历
+	public void preOrderNR() {
+		Stack<Node> stack = new Stack<>();
+		stack.push(root);
+		while (!stack.isEmpty()) {
+			Node cur = stack.pop();
+			System.out.println(cur.e);
+			if (cur.right != null) {
+				stack.push(cur.right);
+			}
+			if (cur.left != null) {
+				stack.push(cur.left);
+			}
+		}
+	}
+
+	// 层序遍历
+	public void levelOrder() {
+		Queue<Node> queue = new LinkedList<Node>();
+		queue.add(root);
+		while (!queue.isEmpty()) {
+			Node cur = queue.remove();
+			System.out.println(cur.e);
+			if (cur.left != null) {
+				queue.add(cur.left);
+			}
+			if (cur.right != null) {
+				queue.add(cur.right);
+			}
+		}
+	}
+
+	// 寻找最小值
+	public E minimum() {
+		if (size == 0) {
+			throw new IllegalArgumentException("BST is empty");
+		}
+		return minimum(root).e;
+	}
+
+	private Node minimum(Node node) {
+		if (node.left == null) {
+			return node;
+		}
+		return minimum(node.left);
+	}
+
+	// 寻找最大值
+	public E minimax() {
+		if (size == 0) {
+			throw new IllegalArgumentException("BST is empty");
+		}
+		return minimax(root).e;
+	}
+
+	private Node minimax(Node node) {
+		if (node.right == null) {
+			return node;
+		}
+		return minimum(node.left);
+	}
+
+	// 删除并返回最小值
+	public E removeMin() {
+		E ret = minimum();
+		root = removeMin(root);
+		return ret;
+	}
+
+	private Node removeMin(Node node) {
+		if (node.left == null) {
+			Node rightNode = node.right;
+			node.right = null;
+			size--;
+			return rightNode;
+		}
+		node.left = removeMin(node.left);
+		return node;
+	}
+
+	// 删除并返回最大值
+	public E removeMax() {
+		E ret = minimax();
+		root = removeMax(root);
+		return ret;
+	}
+
+	private Node removeMax(Node node) {
+		if (node.right == null) {
+			Node leftNode = node.left;
+			node.left = null;
+			size--;
+			return leftNode;
+		}
+		node.right = removeMin(node.right);
+		return node;
+	}
+
+	public void remove(E e) {
+		root = remove(root, e);
+	}
+
+	private Node remove(Node node, E e) {
+		if (node == null) {
+			return null;
+		}
+		if (e.compareTo(node.e) < 0) {
+			node.left = remove(node.left, e);
+			return node;
+		} else if (e.compareTo(node.e) > 0) {
+			node.right = remove(node.right, e);
+			return node;
+		} else {
+			if (node.left == null) {
+				Node rightNode = node.right;
+				node.right = null;
+				size--;
+				return rightNode;
+			}
+			if (node.right == null) {
+				Node leftNode = node.left;
+				node.left = null;
+				size--;
+				return leftNode;
+			}
+			// 左右子树都不为空，寻找后继
+			Node successor = minimum(node.right);
+			successor.right = removeMin(node.right);
+			successor.left = node.left;
+			node.left = node.right = null;
+			return successor;
+		}
 	}
 }
