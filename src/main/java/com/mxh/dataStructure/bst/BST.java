@@ -41,10 +41,7 @@ public class BST<E extends Comparable<E>> {
 	}
 
 	public void add(E e) {
-		/*
-		 * if (root == null) { root = new Node(e); size++; } else { add(root,
-		 * e); }
-		 */
+
 		root = add(root, e);
 	}
 
@@ -57,12 +54,6 @@ public class BST<E extends Comparable<E>> {
 	 * @return node
 	 */
 	private Node add(Node node, E e) {
-		/*
-		 * if (e.equals(node.e)) { return; } else if (e.compareTo(node.e) > 0 &&
-		 * node.left == null) { node.left = new Node(e); size++; } else if
-		 * (e.compareTo(node.e) < 0 && node.right == null) { node.right = new
-		 * Node(e); size++; }
-		 */
 		if (node == null) {
 			size++;
 			return new Node(e);

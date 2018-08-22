@@ -82,7 +82,8 @@ public class LinkedList<E> {
 	public E getLast() {
 		return get(size - 1);
 	}
-	public E getFirst(){
+
+	public E getFirst() {
 		return get(0);
 	}
 
@@ -140,5 +141,20 @@ public class LinkedList<E> {
 
 	public E removerLast() {
 		return remove(size - 1);
+	}
+
+	public void removeElement(E e) {
+		Node pre = dummyHead;
+		while (pre.next != null) {
+			if (pre.next.e.equals(e)) {
+				break;
+			}
+			pre = pre.next;
+		}
+		if (pre.next != null) {
+			Node delNode = pre.next;
+			pre.next = delNode.next;
+			delNode.next = null;
+		}
 	}
 }
