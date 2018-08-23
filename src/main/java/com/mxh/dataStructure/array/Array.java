@@ -11,6 +11,15 @@ public class Array<E> {
 	private int size;
 	private int capacity;
 
+	
+	public Array(E[] arr){
+		data=(E[]) new Object[arr.length];
+		for (int i = 0; i < arr.length; i++) {
+			data[i] = arr[i];
+		}
+		size=arr.length;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public Array(int capacity) {
 		data = (E[]) new Object[capacity];
@@ -22,6 +31,14 @@ public class Array<E> {
 		this(10);
 	}
 
+	public void swap(int i,int j){
+		if (i<0||i>=size||j<0||j>=size) {
+			throw new IllegalArgumentException("index is illegal");
+		}
+		E e=data[i];
+		data[i]=data[j];
+		data[j]=e;
+	}
 	/**
 	 * 返回数组的元素个数
 	 * 
@@ -184,8 +201,8 @@ public class Array<E> {
 			throw new IllegalArgumentException("index is illegal");
 		}
 		E ret = data[index];
-		for (int i = index; i < size; i++) {
-			data[i] = data[i + 1];
+		for (int i = index+1; i < size; i++) {
+			data[i-1] = data[i];
 		}
 		size--;
 		if (size == data.length >>> 2 && data.length >>> 1 != 0) {
