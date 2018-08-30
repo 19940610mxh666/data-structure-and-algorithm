@@ -86,6 +86,10 @@ public class BST<E extends Comparable<E>> {
 		}
 	}
 
+	public Node getNode(Node node,E e){
+		return null;
+	}
+	
 	/*
 	 * Ç°Ğò±éÀú
 	 */
